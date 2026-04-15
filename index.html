@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JWT Token Generator — Free Fire</title>
+<title>JWT Token Generator — Vercel Fix</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -14,21 +14,17 @@
     --accent2: #ff6b35;
     --green: #00ff88;
     --red: #ff3366;
-    --yellow: #ffd700;
     --text: #c8d8f0;
     --dim: #4a6080;
     --glow: 0 0 20px rgba(0,212,255,0.3);
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Rajdhani', sans-serif;
     min-height: 100vh;
   }
-
   body::before {
     content: '';
     position: fixed;
@@ -39,21 +35,18 @@
     pointer-events: none;
     z-index: 0;
   }
-
   .container {
     position: relative;
     z-index: 1;
-    max-width: 950px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 30px 20px 60px;
   }
-
   header {
     text-align: center;
     margin-bottom: 40px;
     padding: 30px 0;
   }
-
   .logo-badge {
     display: inline-flex;
     align-items: center;
@@ -68,7 +61,6 @@
     color: var(--accent);
     letter-spacing: 3px;
   }
-
   .logo-badge::before {
     content: '';
     width: 6px;
@@ -78,12 +70,10 @@
     box-shadow: 0 0 8px var(--green);
     animation: blink 1.5s ease-in-out infinite;
   }
-
   @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.2; }
   }
-
   h1 {
     font-family: 'Orbitron', monospace;
     font-size: clamp(28px, 5vw, 52px);
@@ -94,14 +84,12 @@
     background-clip: text;
     margin-bottom: 10px;
   }
-
   .subtitle {
     font-size: 14px;
     color: var(--dim);
     font-family: 'Share Tech Mono', monospace;
     letter-spacing: 2px;
   }
-
   .stats-bar {
     display: flex;
     gap: 2px;
@@ -111,7 +99,6 @@
     border-radius: 6px;
     overflow: hidden;
   }
-
   .stat-item {
     flex: 1;
     padding: 12px 16px;
@@ -119,7 +106,6 @@
     border-right: 1px solid var(--border);
   }
   .stat-item:last-child { border-right: none; }
-
   .stat-val {
     font-family: 'Orbitron', monospace;
     font-size: 22px;
@@ -127,10 +113,8 @@
     color: var(--accent);
     display: block;
   }
-
   .stat-val.orange { color: var(--accent2); }
   .stat-val.green { color: var(--green); }
-
   .stat-label {
     font-size: 10px;
     letter-spacing: 2px;
@@ -138,7 +122,18 @@
     text-transform: uppercase;
     font-family: 'Share Tech Mono', monospace;
   }
-
+  .cors-warning {
+    background: rgba(255,107,53,0.2);
+    border-left: 3px solid var(--accent2);
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'Share Tech Mono', monospace;
+  }
+  .cors-warning a {
+    color: var(--accent);
+  }
   .upload-zone {
     border: 2px dashed var(--border);
     border-radius: 8px;
@@ -150,25 +145,20 @@
     margin-bottom: 20px;
     position: relative;
   }
-
   .upload-zone:hover, .upload-zone.drag-over {
     border-color: var(--accent);
     background: rgba(0,212,255,0.05);
     box-shadow: var(--glow);
   }
-
   .upload-zone.has-file {
     border-color: var(--green);
     border-style: solid;
     background: rgba(0,255,136,0.04);
   }
-
   .upload-icon { font-size: 40px; margin-bottom: 12px; display: block; }
   .upload-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 6px; }
   .upload-sub { font-size: 12px; color: var(--dim); font-family: 'Share Tech Mono', monospace; }
-
   #fileInput { display: none; }
-
   .file-info {
     display: none;
     background: rgba(0,255,136,0.08);
@@ -182,10 +172,8 @@
     align-items: center;
     gap: 10px;
   }
-
   .file-info.show { display: flex; }
   .file-info .fname { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
   .btn-generate {
     width: 100%;
     padding: 16px;
@@ -202,19 +190,16 @@
     margin-bottom: 24px;
     text-transform: uppercase;
   }
-
   .btn-generate:hover {
     background: linear-gradient(135deg, #00f0ff, var(--accent));
     box-shadow: var(--glow);
     transform: translateY(-2px);
   }
-
   .btn-generate:disabled {
     background: var(--border);
     color: var(--dim);
     cursor: not-allowed;
   }
-
   .terminal-wrap { margin-bottom: 24px; }
   .terminal-header {
     display: flex;
@@ -231,7 +216,6 @@
   .t-dot.y { background: #febc2e; }
   .t-dot.g { background: #28c840; }
   .t-title { flex: 1; text-align: center; font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--dim); }
-
   .terminal-body {
     background: #060b18;
     border: 1px solid var(--border);
@@ -244,24 +228,20 @@
     font-size: 12px;
     line-height: 1.7;
   }
-
   .terminal-body::-webkit-scrollbar { width: 4px; }
   .terminal-body::-webkit-scrollbar-track { background: transparent; }
   .terminal-body::-webkit-scrollbar-thumb { background: var(--border); }
-
   .log-line { display: flex; gap: 12px; margin-bottom: 4px; border-bottom: 1px solid rgba(74,96,128,0.2); padding-bottom: 4px; }
   .log-idx { color: var(--dim); min-width: 75px; }
   .log-ok { color: var(--green); }
   .log-err { color: var(--red); }
   .log-info { color: var(--accent); }
   .log-warn { color: var(--yellow); }
-
   .progress-wrap { margin-bottom: 24px; display: none; }
   .progress-wrap.show { display: block; }
   .progress-labels { display: flex; justify-content: space-between; font-size: 11px; font-family: 'Share Tech Mono', monospace; color: var(--dim); margin-bottom: 6px; }
   .progress-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
   .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 3px; transition: width 0.3s ease; width: 0%; }
-
   .download-section {
     display: none;
     text-align: center;
@@ -294,7 +274,6 @@
     transition: all 0.3s ease;
   }
   .btn-download:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(0,255,136,0.5); }
-
   .credit { text-align: center; margin-top: 40px; font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--dim); }
   .credit a { color: var(--accent); text-decoration: none; }
 </style>
@@ -307,6 +286,10 @@
     <h1>JWT TOKEN<br>GENERATOR</h1>
     <p class="subtitle">FREE FIRE // @danger_ff_like // MAX 150 AKUN</p>
   </header>
+
+  <div class="cors-warning">
+    ⚠️ Jika terjadi CORS error, gunakan CORS proxy dibawah atau install extension "CORS Unblock" di browser
+  </div>
 
   <div class="stats-bar">
     <div class="stat-item"><span class="stat-val" id="statTotal">0</span><span class="stat-label">Akun</span></div>
@@ -355,9 +338,18 @@
 </div>
 
 <script>
-  // API Base URL (GET method)
+  // API endpoint
   const API_BASE = 'https://jwtabbbsvvcauhsb.vercel.app/token';
   
+  // CORS Proxy options (pilih salah satu yang aktif)
+  const PROXIES = {
+    none: '',
+    corsanywhere: 'https://cors-anywhere.herokuapp.com/',
+    allorigins: 'https://api.allorigins.win/raw?url=',
+    vercel: '/api/proxy?url=' // Buat API route sendiri di Vercel
+  };
+  
+  let currentProxy = 'none';
   let accounts = [];
   let results = [];
   let isRunning = false;
@@ -397,6 +389,14 @@
 
   function clearTerminal() {
     terminal.innerHTML = '';
+  }
+
+  // Get full URL with proxy
+  function getProxyUrl(originalUrl) {
+    if (currentProxy === 'none') return originalUrl;
+    if (currentProxy === 'corsanywhere') return PROXIES.corsanywhere + originalUrl;
+    if (currentProxy === 'allorigins') return PROXIES.allorigins + encodeURIComponent(originalUrl);
+    return originalUrl;
   }
 
   // File upload handlers
@@ -445,7 +445,8 @@
         btnGenerate.disabled = false;
         statTotal.textContent = accounts.length;
         
-        log('ok', '✓', `File dimuat: ${accounts.length} akun (max 150)`);
+        log('ok', '✓', `File dimuat: ${accounts.length} akun`);
+        log('info', 'TIP', 'Jika terjadi CORS error, install extension "CORS Unblock" di Chrome');
       } catch (err) {
         log('err', '!', 'Gagal parse JSON: ' + err.message);
       }
@@ -453,13 +454,16 @@
     reader.readAsText(file);
   }
 
-  // Generate token untuk satu akun (GET request)
+  // Generate token
   async function generateToken(uid, password, index, total) {
     const label = `[${index}/${total}]`;
     const url = `${API_BASE}?uid=${encodeURIComponent(uid)}&password=${encodeURIComponent(password)}`;
+    const proxyUrl = getProxyUrl(url);
     
     try {
-      const response = await fetch(url, {
+      log('info', label, `Request ke: ${proxyUrl.substring(0, 60)}...`);
+      
+      const response = await fetch(proxyUrl, {
         method: 'GET',
         mode: 'cors',
         credentials: 'omit',
@@ -470,7 +474,14 @@
         throw new Error(`HTTP ${response.status}`);
       }
 
-      const data = await response.json();
+      let data;
+      // Handle allorigins response format
+      if (currentProxy === 'allorigins') {
+        const wrapped = await response.json();
+        data = JSON.parse(wrapped.contents);
+      } else {
+        data = await response.json();
+      }
 
       if (data.success && data.jwt_token) {
         return {
@@ -492,7 +503,7 @@
     } catch (err) {
       let errorMsg = err.message;
       if (err.name === 'TypeError' && err.message.includes('Failed to fetch')) {
-        errorMsg = 'Network error / CORS';
+        errorMsg = 'CORS Error! Install extension "CORS Unblock" atau buka via Live Server';
       }
       return {
         success: false,
@@ -502,7 +513,7 @@
     }
   }
 
-  // Main generate function
+  // Main generate
   btnGenerate.addEventListener('click', async () => {
     if (isRunning || accounts.length === 0) return;
     
@@ -518,10 +529,16 @@
 
     log('info', 'START', `Memulai generate ${accounts.length} token...`);
     log('info', 'API', `Endpoint: ${API_BASE}`);
+    log('info', 'CORS', `Proxy mode: ${currentProxy === 'none' ? 'TIDAK AKTIF' : 'AKTIF'}`);
+    
+    if (currentProxy === 'none') {
+      log('warn', '!', 'CORS proxy tidak aktif, mungkin akan gagal. Install extension "CORS Unblock"');
+    }
+    
     log('info', '---', '─'.repeat(45));
 
     for (let i = 0; i < accounts.length; i++) {
-      const { uid, password, name } = accounts[i];
+      const { uid, password } = accounts[i];
       const currentNum = i + 1;
       
       const result = await generateToken(uid, password, currentNum, accounts.length);
@@ -537,7 +554,7 @@
           region: result.region,
           status: 'success'
         });
-        log('ok', `[${currentNum}/${accounts.length}]`, `✅ ${uid} | ${result.nickname} | Token: ${result.jwt_token.substring(0, 35)}...`);
+        log('ok', `[${currentNum}/${accounts.length}]`, `✅ ${uid} | ${result.nickname}`);
       } else {
         failCount++;
         results.push({
@@ -545,10 +562,9 @@
           error: result.error,
           status: 'failed'
         });
-        log('err', `[${currentNum}/${accounts.length}]`, `❌ ${uid} | Gagal: ${result.error}`);
+        log('err', `[${currentNum}/${accounts.length}]`, `❌ ${uid} | ${result.error}`);
       }
 
-      // Update stats
       statSuccess.textContent = successCount;
       statFail.textContent = failCount;
       const pct = Math.round((currentNum / accounts.length) * 100);
@@ -556,46 +572,35 @@
       progressFill.style.width = pct + '%';
       progressText.textContent = `${currentNum} / ${accounts.length}`;
 
-      // Delay untuk menghindari rate limit
       if (i < accounts.length - 1) {
-        await new Promise(r => setTimeout(r, 200));
+        await new Promise(r => setTimeout(r, 300));
       }
     }
 
     log('info', '---', '─'.repeat(45));
     log('info', 'DONE', `Selesai! ✅ ${successCount} sukses, ❌ ${failCount} gagal`);
 
+    if (failCount === accounts.length) {
+      log('err', '!', 'SEMUA GAGAL! Install CORS Unblock extension: https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino');
+    }
+
     isRunning = false;
     btnGenerate.disabled = false;
 
-    // Prepare download data
     const successResults = results.filter(r => r.status === 'success');
-    const downloadData = successResults.map(r => ({
-      uid: r.uid,
-      jwt_token: r.jwt_token,
-      access_token: r.access_token,
-      open_id: r.open_id,
-      nickname: r.nickname,
-      region: r.region,
-      generated_at: new Date().toISOString()
-    }));
-
     if (successResults.length > 0) {
-      document.getElementById('dlSub').innerHTML = `${successResults.length} token berhasil digenerate dari ${accounts.length} akun`;
+      document.getElementById('dlSub').innerHTML = `${successResults.length} token berhasil digenerate`;
       downloadSection.classList.add('show');
 
       btnDownload.onclick = () => {
-        const blob = new Blob([JSON.stringify(downloadData, null, 2)], { type: 'application/json' });
+        const blob = new Blob([JSON.stringify(successResults, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = `JWT-TOKENS_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.json`;
         a.click();
         URL.revokeObjectURL(url);
-        log('ok', 'DL', 'File download dimulai');
       };
-    } else {
-      log('err', '!', 'Tidak ada token yang berhasil digenerate');
     }
   });
 </script>
